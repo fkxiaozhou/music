@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService{
             return userMapper.insertUser(username, password);
 //        }else{
 //            throw new CustomException(ResultCode.FAIL);
+
 //        }
     }
 
