@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkxiaozhou.music.moudle.login.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.fkxiaozhou.music.moudle.login.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="password" property="password" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, username, `password`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.fkxiaozhou.music.moudle.login.entity.User">
+    <!--@mbg.generated-->
+    insert into `user` (id, username, `password`)
+    values (#{id}, #{username}, #{password})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkxiaozhou.music.moudle.login.entity.User">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="username != null">
+        #{username},
+      </if>
+      <if test="password != null">
+        #{password},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkxiaozhou.music.moudle.login.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="username != null">
+        username = #{username},
+      </if>
+      <if test="password != null">
+        `password` = #{password},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkxiaozhou.music.moudle.login.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    set username = #{username},
+      `password` = #{password}
+    where id = #{id}
+  </update>
+
+  <select id="selectByusername" resultType="boolean">
+    select
+    from `user`
+    where username = #{username}
+    </select>
+
+  <insert id="insertUser">
+    insert
+    into `user`(username, `password`)
+    values (#{username}, #{password})
+  </insert>
+
+  <select id="verifyPassword" resultType="java.lang.Integer">
+    select count(*) from `user` where username=#{username} and password=#{password}
+  </select>
+</mapper>
